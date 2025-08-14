@@ -46,6 +46,8 @@ customer2 = {
 }
 print(customer1["name"])
 
+# This is an example of a for loop using a range
+# From chapter 3
 for i in range(99,0,-1):
     if i == 1:
         print("1 bottle of beer on the wall. 1 bottle of beer.")
@@ -55,3 +57,19 @@ for i in range(99,0,-1):
         print(str(i) + " bottles of beer on the wall. " + str(i) + "bottles of beer.")
         print("Take one down and pass it around, " + str(i-1) + " bottles of beer on the wall.\n")
 print("No more bottles of beer on the wall!")
+
+# This is an example of error handling from chapter 4
+
+# Divide a number by zero
+
+a = 7
+b = 0
+
+try:
+    print(str(a) + " divided by " + str(b) + " is " + str(a/b))
+except Exception as e:
+    print("Sorry a problem occured dividing the numbers.")
+    print("Error details: " + str(e))
+finally:
+    print("But still we tried")
+print("Finally, we are done!")
