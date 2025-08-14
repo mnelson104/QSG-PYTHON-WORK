@@ -1,7 +1,18 @@
 # ClydeBank Coffee Shop Simulator 4000
 # Copyright (C) 2025  ClydeBank Media, All Rights Reserved
+#import items from the random module to generate weather
+from random import seed
+from random import randint
+
 # Current day number
 day = 1
+
+#Starting cash on hand
+cash = 100.00
+
+#Coffee on hand (cups)
+coffee = 100
+
 # Sales list of dictionaries
 # sales = [
 #     {
@@ -38,12 +49,46 @@ print("Let's collect some infrmation before we start the game.\n")
 name = input("What is your name? ")
 shop_name = input("What do you want to name your coffee shop? ")
 
-print("\nThanks, " + name + ". Let's set some initial pricing.\n")
-
-# Get initial price of a cup of coffee
-cup_price = input("What do you want to charge per cup of coffee? ")
-
+#print("\nThanks, " + name + ". Let's set some initial pricing.\n")
+#
+#
 # Display what we have
-print("\nGreat. Here's what we've collected so far.\n")
-print("Your name is " + name + " and you're opening " + shop_name + ".")
-print("Your first cup of coffee will sell for $" + cup_price + ".\n")
+#print("\nGreat. Here's what we've collected so far.\n")
+#print("Your name is " + name + " and you're opening " + shop_name + ".")
+#print("Your first cup of coffee will sell for $" + cup_price + ".\n")
+
+print("\nOK, let's get started!. Have fun!")
+
+#The main game loop
+
+running = True
+while running:
+    # Display the day and add a "fancy" text effect
+    print("\n-----| Day " + str(day) + " @" + shop_name + " |-----")
+
+    # Generate a random temperature between 20 and 90 degrees
+    # We will consider seasons later on, but this is good enough for now
+    temperature = randint(20, 90)
+
+    # Display the cash and weather
+    print("You have $" + str(cash) + " cash and it's " + str(temperature) + " degrees.")
+    print("You have enough coffe to make " + str(coffee) + " cups.\n")
+
+    # Get price of a cup of coffee
+    cup_price = input("What do you want to charge per cup of coffee? ")
+
+    # Get advertising budget
+    print("\nYou can buy advertising to help promote sales.")
+    advertising = input("How much advertising do you want to buy (0 for none)? ")
+
+    # Convert advertising to float
+    advertising = float(advertising)
+
+    # Deduct advertising from cash on hand
+    cash -= advertising
+
+    # TODO: Calculate today's performance
+    # TODO: Display today's performance
+
+    # Before we loop around, add a day
+    day += 1

@@ -45,3 +45,13 @@ customer2 = {
     "email": "andrea@coffeeloversunite.us"
 }
 print(customer1["name"])
+
+for i in range(99,0,-1):
+    if i == 1:
+        print("1 bottle of beer on the wall. 1 bottle of beer.")
+        print("Take one down and pass it around, no more bottles of beer on the wall.\n")
+        continue
+    else:
+        print(str(i) + " bottles of beer on the wall. " + str(i) + "bottles of beer.")
+        print("Take one down and pass it around, " + str(i-1) + " bottles of beer on the wall.\n")
+print("No more bottles of beer on the wall!")
