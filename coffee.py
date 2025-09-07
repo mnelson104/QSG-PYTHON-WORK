@@ -20,41 +20,63 @@ coffee = 100
 #          "coffe_inv": 100,
 #          "advertising": "10",
 #          "temp": 68,
-#         "cups_siold": 16
+#         "cups_sold": 16
 #    },
 #     {
 #          "day": 2,
 #          "coffe_inv": 84,
 #          "advertising": "15",
 #          "temp": 72,
-#         "cups_siold": 20
+#         "cups_sold": 20
 #    },
 #     {
 #          "day": 3,
 #          "coffe_inv": 64,
 #          "advertising": "5",
 #          "temp": 78,
-#         "cups_siold": 10
+#         "cups_sold": 10
 #    },
 # ]
 # Create an empty sales list
 sales = []
 
-# Print the welcome message
-print("ClydeBank Coffee Shop Simulator 4000, Version 1.00")
-print("Copyright (C) 2025 ClydeBank Media, All Rights Reserved.\n")
-print("Let's collect some infrmation before we start the game.\n")
+def welcome():
+    print("ClydeBank Coffee Shop Simulator 4000, Version 1.00")
+    print("Copyright (C) 2025 ClydeBank Media, All Rights Reserved.\n")
+    print("Let's collect some infrmation before we start the game.\n")
 
-# Get name and shop name by using the following approach
-# 1. Set name and shop_name to False
-# 2. Use while not name nd shop_name to continue to promt for a non-empty string
-name = False
-while not name:
-    name = input("What is your name? ")
+def prompt(display = "Please input a string.", require = True):
+    if require:
+        s = False
+        while not s:
+            s = input(display + " ")
+    else:
+        s = input(display + " ")
+    return s
 
-shop_name = False
-while not shop_name:
-    shop_name = input("What do you want to name your coffee shop? ")
+def daily_stats(cash_on_hand,weather_temp,coffee_inventory):
+                print("You have $" + str(cash_on_hand) + " cash on hand and the temperature is " + str(weather_temp) + " degrees.")
+                print("You have enough coffee on hand to make " + str(coffee_inventory) + " cups of coffee.\n")
+
+def convert_to_float(s):
+     # If conversion fails, assign it to 0
+    try:
+        f = float(s)
+    except ValueError:
+        f = 0
+    return f
+
+def get_weather():
+    # Generate a random temperature between 20 and 90 degrees
+    # We will consider seasons later on, but this is good enough for now
+    return randint(20, 90)
+
+# Print welcome message
+welcome()
+
+# Get name and shop name
+name = prompt("What is your name?",True)
+shop_name = prompt("What do you want to name your coffee shop?",True)
 
 # We have what we need, let's get started!
 
@@ -77,25 +99,20 @@ while running:
 
     # Generate a random temperature between 20 and 90 degrees
     # We will consider seasons later on, but this is good enough for now
-    temperature = randint(20, 90)
+    temperature = get_weather()
 
     # Display the cash and weather
-    print("You have $" + str(cash) + " cash and it's " + str(temperature) + " degrees.")
-    print("You have enough coffe to make " + str(coffee) + " cups.\n")
+    daily_stats(cash,temperature,coffee)
 
     # Get price of a cup of coffee
-    cup_price = input("What do you want to charge per cup of coffee? ")
+    cup_price = prompt("What do you want to charge per cup of coffee? ")
 
     # Get advertising budget
     print("\nYou can buy advertising to help promote sales.")
-    advertising = input("How much advertising do you want to buy (0 for none)? ")
+    advertising = prompt("How much advertising do you want to buy (0 for none)? ",False)
 
     # Convert advertising to float
-    # If it fails, set it to 0
-    try:
-        advertising = float(advertising)
-    except ValueError:
-        advertising = 0
+    advertising = convert_to_float(advertising)
 
     # Deduct advertising from cash on hand
     cash -= advertising
